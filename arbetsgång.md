@@ -1,5 +1,5 @@
 ## Förenklad version av python-crossing:
-1. En fast spelbana som en lista, utan slump och bilar:
+1. En fast spelbana som en lista, utan slump och rörliga bilar:
 - finns i board.py
 
 2. En funktion för att flytta spelaren:
@@ -20,4 +20,8 @@
 
 ## Funktioner och vokabulär:
 
+- draw_board från board.py
+
 ## Fel som behöver fixas:
+
+- Spelarens ikon är inte centrerad när spelet körs, om man lägger till ett mellanslag efter ikonen blir startraden bara längre än de andra
