@@ -1,4 +1,5 @@
-from board import draw_board                                                            # hämtar funktionen draw_board från filen board.py
+from board import draw_board                                    # hämtar funktionen draw_board från filen board.py
+from player import move_player                                  # hämtar funktionen move_player från filen player.py
 
 board = [
     {"type": "grass", "direction": 0,  "tiles": [".", ".", ".", ".", ".", ".", "."]},   # rad 0: gräs, ingen riktning, bara gräsrutor
@@ -11,4 +12,15 @@ board = [
 
 player = (5, 3)                                                                         # tupel för spelarens position: rad 5 (nederst), kolumn 3 (mitten)
 
-draw_board(board, player)                                                               # anropar funktionen
+while True:                                                     # spelloopen: upprepas för alltid, tills spelaren trycker q
+    print("\n" * 30)                                           # skriver ut tomma rader så att det gamla brädet åker ur synfältet
+    draw_board(board, player)                                   # ritar brädet med spelaren på sin nuvarande position
+    print("w = upp   s = ner   a = vänster   d = höger   q = avsluta")   # påminner om vilka tangenter som gäller
+    choice = input("Ditt drag: ").strip().lower()               # läser in spelarens tangent, tar bort mellanslag och gör versaler till gemener
+
+    if choice == "q":                                           # om spelaren skrev q ...
+        break                                                   # ... hoppar vi ur loopen och programmet tar slut
+
+    player = move_player(player, choice, board)                 # flyttar spelaren (ogiltiga drag = stå kvar)
+
+print("Spel avslutat")                               # skrivs ut när spelet har avslutats
