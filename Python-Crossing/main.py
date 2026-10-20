@@ -33,3 +33,7 @@ if game_over:
     print("GAME OVER! Du blev påkörd.")
 
 print("Spel avslutat")                                          # skrivs ut när spelet har avslutats
+
+
+
+# ta bort vid nästa commit
