@@ -5,7 +5,7 @@ def draw_board(board, player):
         line = ""                                               # skapar en tom sträng som så småningom ska fyllas på
         for column_number in range(len(row["tiles"])):          # går igenom varje kolumnnummer i radens lista med rutor
             if (row_number, column_number) == player:           # kollar om rutans position är samma som spelarens
-                line += "👤"                                    # i så fall ritas spelaren
+                line += "👤 "                                    # i så fall ritas spelaren med ett mellanslag efter
             else:                                               # om inte spelaren står här
                 line += row["tiles"][column_number] + " "       # ritas rutan ut med dens egna tecken och ett mellanslag
         print(line)                                             # skriver ut den fullständiga raden
