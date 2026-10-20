@@ -5,8 +5,8 @@
 2. En funktion för att flytta spelaren:
 - finns i player.py
 
-3. Stillastående bilar och kollision:
-- finns i cars.py och collision.py
+3. Funktion som kollar om spelaren står på en bil ruta:
+- finns i collision.py
 
 ## Avancerad version av python-crossing:
 
