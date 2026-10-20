@@ -4,3 +4,5 @@ def check_collision(board, player):
     col = player[1]                                             # tar spelarens kolumnnummer
     tile = board[row]["tiles"][col]                             # hämtar tecknet i rutan där spelaren står
     return tile == "🚗"                                          # jämförelsen blir True om rutan är en bil '🚗', annars False
+
+# ta bort vid nästa commit
