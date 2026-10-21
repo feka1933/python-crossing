@@ -1,1 +1,0 @@
-This is where we put the instructions on how to use the program.
