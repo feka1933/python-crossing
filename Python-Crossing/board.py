@@ -1,3 +1,6 @@
+import random
+
+
 def draw_board(board, player):
     """Prints the board with the player shown as 👤"""
     for row_number in range(len(board)):                        # går igenom varje radnummer
@@ -11,3 +14,17 @@ def draw_board(board, player):
         print(line)                                             # skriver ut den fullständiga raden
 
 # Kör hela programmet i main.py  
+
+
+def generate_row(number_of_columns=7):
+    """Skapar en slumpad rad: 40 % gräs, annars väg med 1–2 bilar."""
+    if random.random() < 0.4:                                   # 40 % chans till säker gräsrad
+        return {"type": "grass", "direction": 0,
+                "tiles": ["🟩"] * number_of_columns}
+
+    direction = random.choice([1, -1])                          # bilar åt höger eller vänster
+    tiles = ["⬛"] * number_of_columns                          # börja med tom väg
+    number_of_cars = random.randint(1, 2)                       # 1 eller 2 bilar
+    for position in random.sample(range(number_of_columns), number_of_cars):
+        tiles[position] = "🚗"                                  # placera ut bilarna på slumpade kolumner
+    return {"type": "road", "direction": direction, "tiles": tiles}

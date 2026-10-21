@@ -1,24 +1,35 @@
-def move_player(player, choice, board):
-    """Moves the player one step in the chosen direction. Invalid keys, or moves that would leave the board, keep the player in place."""
-    row = player[0]                                             # plockar ut spelarens nuvarande radnummer
-    col = player[1]                                             # plockar ut spelarens nuvarande kolumnnummer
+from board import generate_row                                 # behövs för att skapa nya rader
 
-    if choice == "w":                                           # w = uppåt, och uppåt på skärmen är ett LÄGRE radnummer
-        row = row - 1
-    elif choice == "s":                                         # s = nedåt, alltså ett högre radnummer
+
+def move_player(player, choice, board):
+    """Flyttar spelaren ett steg. Världen rullar när spelaren går uppåt
+    från mitten av brädet – då skapas en ny rad högst upp och den nedersta tas bort."""
+    row = player[0]
+    col = player[1]
+    middle_row = len(board) // 2                                # mittenraden (t.ex. rad 3 vid 6 rader)
+
+    if choice == "w":
+        new_row = row - 1
+        if new_row < middle_row and row <= middle_row:          # spelaren vill gå förbi mittraden uppåt?
+            board.insert(0, generate_row(len(board[0]["tiles"])))   # lägg till ny rad högst upp
+            board.pop()                                             # ta bort nedersta raden
+            row = middle_row                                        # spelaren stannar på mittraden
+            # ↑ men rutan de står på är nu den som förut låg raden ovanför
+        else:
+            row = new_row
+    elif choice == "s":
         row = row + 1
-    elif choice == "a":                                         # a = ett steg åt vänster, alltså ett lägre kolumnnummer
+    elif choice == "a":
         col = col - 1
-    elif choice == "d":                                         # d = ett steg åt höger, alltså ett högre kolumnnummer
+    elif choice == "d":
         col = col + 1
 
-    number_of_rows = len(board)                                 # hur många rader brädet har
-    number_of_columns = len(board[0]["tiles"])                  # hur många kolumner brädet har (läser av den första raden)
+    number_of_rows = len(board)
+    number_of_columns = len(board[0]["tiles"])
 
-    if row < 0 or row >= number_of_rows:                        # skulle spelaren hamna ovanför eller under brädet?
-        return player                                           # i så fall: ogiltigt drag, returnera gamla positionen
-    if col < 0 or col >= number_of_columns:                     # skulle spelaren hamna utanför brädet åt vänster eller höger?
-        return player                                           # i så fall: ogiltigt drag, returnera gamla positionen
+    if row < 0 or row >= number_of_rows:
+        return player
+    if col < 0 or col >= number_of_columns:
+        return player
 
-    return (row, col)                                           # den nya giltiga positionen, som en tupel precis som tidigare
-
+    return (row, col)
