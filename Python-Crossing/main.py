@@ -1,6 +1,7 @@
 from board import draw_board                                    # hämtar funktionen draw_board från filen board.py
 from player import move_player                                  # hämtar funktionen move_player från filen player.py
 from collision import check_collision                           # hämtar funktionen check_collision från filen collision.py
+from cars import move_cars     
 
 board = [
     {"type": "grass", "direction": 0,  "tiles": ["🟩", "🟩", "🟩", "🟩", "🟩", "🟩", "🟩"]},   # rad 0: gräs, ingen riktning, bara gräsrutor
@@ -25,7 +26,11 @@ while not game_over:
         break                                                   # ... hoppar vi ur loopen och programmet tar slut
 
     player = move_player(player, choice, board)                 # flyttar spelaren (ogiltiga drag = stå kvar)
-    game_over = check_collision(board, player)
+    game_over = check_collision(board, player)                  # krockade spelaren in i en bil?
+
+    if not game_over:                                           # om spelaren klarade sitt drag ...
+        move_cars(board)                                        # ... flyttar alla bilar ett steg
+        game_over = check_collision(board, player)              # krockade en bil in i spelaren?
 
 if game_over:
     print("\n" * 30)
