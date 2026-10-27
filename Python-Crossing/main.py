@@ -1,7 +1,8 @@
 from board import draw_board                                    # hämtar funktionen draw_board från filen board.py
 from player import move_player                                  # hämtar funktionen move_player från filen player.py
 from collision import check_collision                           # hämtar funktionen check_collision från filen collision.py
-from cars import move_cars     
+from cars import move_cars
+import readchar     
 
 board = [
     {"type": "grass", "direction": 0,  "tiles": ["🟩", "🟩", "🟩", "🟩", "🟩", "🟩", "🟩"]},   # rad 0: gräs, ingen riktning, bara gräsrutor
@@ -20,7 +21,7 @@ while not game_over:
     print("\n" * 30)                                            # skriver ut tomma rader så att det gamla brädet åker ur synfältet
     draw_board(board, player)                                   # ritar brädet med spelaren på sin nuvarande position
     print("w = upp   s = ner   a = vänster   d = höger   q = avsluta")   # påminner om vilka tangenter som gäller
-    choice = input("Ditt drag: ").strip().lower()               # läser in spelarens tangent, tar bort mellanslag och gör versaler till gemener
+    choice = readchar.readkey().lower()                         # läser in spelarens tangent med readchar och gör om stora bokstäver til små
 
     if choice == "q":                                           # om spelaren skrev q ...
         break                                                   # ... hoppar vi ur loopen och programmet tar slut
