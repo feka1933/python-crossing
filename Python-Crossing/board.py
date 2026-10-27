@@ -17,7 +17,7 @@ def draw_board(board, player):
 
 
 def generate_row(number_of_columns=7):
-    """Skapar en slumpad rad: 40 % gräs, annars väg med 1–2 bilar."""
+    """Create a random row: 40% grass, otherwise a road with 1–2 cars."""
     if random.random() < 0.4:                                   # 40 % chans till säker gräsrad
         return {"type": "grass", "direction": 0,
                 "tiles": ["🟩"] * number_of_columns}
